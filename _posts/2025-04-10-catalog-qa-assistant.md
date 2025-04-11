@@ -125,7 +125,7 @@ import google.generativeai as genai
 
 # Configure the Gemini Pro client with your API key.
 genai.configure(api_key="YOUR_API_KEY")
-model = genai.GenerativeModel("gemini-pro")
+model = genai.GenerativeModel("gemini-exp-1206")
 
 # Submit the prompt to Gemini Pro to generate an answer.
 response = model.generate_content(prompt)
@@ -134,7 +134,7 @@ print(response.text)
 
 *Explanation:*  
 - **API Configuration:** This code initializes the Gemini Pro client using the Google Generative AI SDK.  
-- **Prompt Submission:** The preassembled prompt is sent to Gemini Pro, and the generated answer is printed.  
+- **Prompt Submission:** The preassembled prompt is sent to Gemini Pro (model name, "gemini-exp-1206"), and the generated answer is printed.  
 - **Seamless Integration:** This step demonstrates how to connect the backend processing with a generative model to obtain a structured answer.
 
 ---
