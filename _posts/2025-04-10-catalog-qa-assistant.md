@@ -78,7 +78,6 @@ top_chunk = chunks[scores.argmax()]
 ```
 
 *Explanation:*  
-- **Chunking:** The code splits the PDF text into logical sections using a regular expression that identifies part numbers (e.g., FT123).  
 - **TF-IDF Vectorization:** `TfidfVectorizer` converts these text chunks into vectors.  
 - **Similarity Scoring:** By comparing the query vector against the indexed chunks using cosine similarity, the most relevant chunk is identified.
 
