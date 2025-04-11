@@ -8,13 +8,13 @@ tags: [GenAI, Kaggle, Gemini, PDF QA, NLP, Catalog Automation]
 
 ## 🔍 Making Complex Product Docs Conversational – Kaggle GenAI Capstone
 
-In the world of commercial sales and enterprise catalogs, dense product documents often slow down business. This blog walks through my submission to the [Kaggle GenAI Intensive Capstone 2025Q1](https://www.kaggle.com/competitions/gen-ai-intensive-course-capstone-2025q1), where I built a **Generative AI-powered Question Answering Assistant** for the **Herman Miller furniture catalog**.
+In the world of commercial sales and enterprise catalogs, dense product documents often slow down business. This blog walks through my submission to the [Kaggle GenAI Intensive Capstone 2025Q1](https://www.kaggle.com/competitions/gen-ai-intensive-course-capstone-2025q1), where I built a **Generative AI-powered Question Answering Assistant** for the [**Herman Miller Canvas Office Landscape Wall & Private Office catalog**](https://www.hermanmiller.com/content/dam/hermanmiller/documents/pricing/PB_CWB.pdf).
 
 ---
 
 ## 🚀 The Real-World Problem
 
-Commercial furniture catalogs like Herman Miller’s are massive PDFs with hundreds of configurable parts, options, finishes, and pricing details. Sales teams and designers frequently face questions like:
+Commercial office furniture catalogs like Herman Miller’s are massive PDFs with hundreds of configurable parts, options, finishes, and pricing details. Sales teams and designers frequently face questions like:
 
 - _“What is part FT123 and how much does it cost with metallic paint?”_
 - _“What’s the difference between FT110 and FT111?”_
@@ -94,7 +94,7 @@ This project isn’t just a proof-of-concept — it’s a template for how enter
 Check out the competition on Kaggle:
 👉 [Q1 2025 GenAI Intensive Capstone Competition](https://www.kaggle.com/competitions/gen-ai-intensive-course-capstone-2025q1)
 
-Or fork my notebook and plug in your own PDF specs, datasheets, or pricing docs: 
+Or fork my notebook and plug in your own PDF specs, datasheets, or pricing docs:
 👉 [My GenAI Intensive Capstone 2025Q1 Submission](https://www.kaggle.com/code/leewhieldon/genai-intensive)
 
 ---
