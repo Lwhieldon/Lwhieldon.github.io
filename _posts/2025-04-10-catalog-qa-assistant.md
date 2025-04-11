@@ -1,7 +1,7 @@
 ---
 title: "🧠 Building a Conversational Catalog Assistant with Gemini & GenAI"
 date: 2025-04-10
-author: "Your Name"
+author: "Lee Whieldon"
 layout: post
 tags: [GenAI, Kaggle, Gemini, PDF QA, NLP, Catalog Automation]
 ---
@@ -91,10 +91,13 @@ This project isn’t just a proof-of-concept — it’s a template for how enter
 
 ## 🛠️ Try It Yourself
 
-Check out the full notebook on Kaggle:
-👉 [GenAI Intensive Capstone 2025Q1 Submission](https://www.kaggle.com/competitions/gen-ai-intensive-course-capstone-2025q1)
+Check out the competition on Kaggle:
+👉 [Q1 2025 GenAI Intensive Capstone Competition](https://www.kaggle.com/competitions/gen-ai-intensive-course-capstone-2025q1)
 
-Or fork it and plug in your own PDF specs, datasheets, or pricing docs.
+Or fork my notebook and plug in your own PDF specs, datasheets, or pricing docs:
+
+👉 [My GenAI Intensive Capstone 2025Q1 Submission](https://www.kaggle.com/code/leewhieldon/genai-intensive)
+
 
 ---
 
