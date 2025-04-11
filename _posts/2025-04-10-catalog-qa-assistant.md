@@ -39,36 +39,114 @@ It transforms a static document into an interactive, grounded chatbot.
 
 ## 🧠 How the System Works
 
-Here’s how the notebook solves the problem:
+Below is a detailed breakdown of the system with code snippets and explanations for each step:
 
 ### 1. PDF & OCR Ingestion
-- Uses `PyPDF2` and Tesseract (optional) to extract text and part numbers from both normal and image-only pages.
+
+```python
+from PyPDF2 import PdfReader
+import pytesseract
+from pdf2image import convert_from_path
+
+# Extract text from a standard (non-image) page of the PDF.
+reader = PdfReader("PB_CWB.pdf")
+text = reader.pages[10].extract_text()
+
+# If the page is image-based or text extraction is insufficient,
+# convert the specific page to an image and apply OCR to extract the text.
+images = convert_from_path("PB_CWB.pdf", first_page=11, last_page=11)
+ocr_text = pytesseract.image_to_string(images[0])
+```
+
+*Explanation:*  
+- **PDF Text Extraction:** The code uses `PyPDF2` to extract text from page 10 of the PDF.  
+- **OCR Fallback:** In cases where text extraction is unreliable (for image-based pages), `pdf2image` and `pytesseract` are used to convert page 11 to an image and perform OCR on it.
+
+---
 
 ### 2. Chunking + TF-IDF Retrieval
-- Splits content into logical chunks (by part number, description, etc.)
-- Indexes with `scikit-learn` TF-IDF to find relevant sections based on user queries
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import re
+
+# Split the extracted text into chunks using a regex that identifies product part numbers (e.g., FT123).
+chunks = re.split(r"\n(?=FT\d{3})", text)
+
+# Build a TF-IDF matrix from the text chunks.
+vectorizer = TfidfVectorizer().fit_transform(chunks)
+
+# Prepare a sample query.
+query = "FT123 metallic paint price"
+query_vec = vectorizer.transform([query])
+
+# Calculate similarity scores between the query and each text chunk.
+scores = cosine_similarity(query_vec, vectorizer).flatten()
+
+# Retrieve the chunk with the highest similarity score.
+top_chunk = chunks[scores.argmax()]
+```
+
+*Explanation:*  
+- **Chunking:** The code splits the PDF text into logical sections using a regular expression that identifies part numbers (e.g., FT123).  
+- **TF-IDF Vectorization:** `TfidfVectorizer` converts these text chunks into vectors.  
+- **Similarity Scoring:** By comparing the query vector against the indexed chunks using cosine similarity, the most relevant chunk is identified.
+
+---
 
 ### 3. Prompt Assembly
-- Retrieved content (tables, features, images) is formatted into Gemini-ready prompts
-- Adds product structure and configuration logic to guide the model
+
+```python
+# Construct a Gemini Pro prompt using the most relevant content chunk.
+prompt = f"""
+You are a helpful assistant for Herman Miller. Using the following context, answer the user’s question clearly and accurately.
+
+Context:
+{top_chunk}
+
+Question:
+What is the price of FT123 with metallic paint?
+
+Answer:
+"""
+```
+
+*Explanation:*  
+- **Context and Query Integration:** The code assembles a prompt that includes the retrieved context (the most relevant chunk), along with the user's question.  
+- **Structured Prompt:** This format helps guide Gemini Pro to provide a grounded, well-structured answer based on the extracted content.
+
+---
 
 ### 4. Gemini Pro Integration
-- Uses Google’s `generativeai` Python SDK to submit structured prompts
-- Returns grounded, formatted responses with pricing tables, citations, or bullet summaries
 
-### 5. (Optional Frontend)
-- In a full app version, Streamlit can visualize responses with embedded images and links
+```python
+import google.generativeai as genai
+
+# Configure the Gemini Pro client with your API key.
+genai.configure(api_key="YOUR_API_KEY")
+model = genai.GenerativeModel("gemini-pro")
+
+# Submit the prompt to Gemini Pro to generate an answer.
+response = model.generate_content(prompt)
+print(response.text)
+```
+
+*Explanation:*  
+- **API Configuration:** This code initializes the Gemini Pro client using the Google Generative AI SDK.  
+- **Prompt Submission:** The preassembled prompt is sent to Gemini Pro, and the generated answer is printed.  
+- **Seamless Integration:** This step demonstrates how to connect the backend processing with a generative model to obtain a structured answer.
 
 ---
 
 ## 🌟 Why This Is Innovative
 
-| Feature            | Innovation |
-|--------------------|------------|
-| 📄 OCR + RAG       | Links extracted image text (e.g. FT123) with price/spec data |
+| Feature               | Innovation |
+|-----------------------|------------|
+| 📄 OCR + RAG          | Links extracted image text (e.g., FT123) with price/spec data |
 | 🧠 Multimodal Reasoning | Handles image + text prompts in a single QA flow |
-| 🧾 Structured Answers | Gemini returns tabular pricing or comparisons, not just plain text |
-| ⚙️ Product Logic | Understands dependencies like finishes, brackets, assemblies |
+| 🧾 Structured Answers  | Gemini returns tabular pricing or comparisons, not just plain text |
+| ⚙️ Product Logic       | Understands dependencies like finishes, brackets, assemblies |
 
 ---
 
@@ -91,19 +169,18 @@ This project isn’t just a proof-of-concept — it’s a template for how enter
 
 ## 🛠️ Try It Yourself
 
-Check out the competition on Kaggle:
+Check out the competition on Kaggle:  
 👉 [Q1 2025 GenAI Intensive Capstone Competition](https://www.kaggle.com/competitions/gen-ai-intensive-course-capstone-2025q1)
 
-Or fork my notebook and plug in your own PDF specs, datasheets, or pricing docs:
+Or fork my notebook and plug in your own PDF specs, datasheets, or pricing docs:  
 👉 [My GenAI Intensive Capstone 2025Q1 Submission](https://www.kaggle.com/code/leewhieldon/genai-intensive)
 
 ---
 
 ## 💬 What’s Next?
 
-- Add multilingual support
-- Replace TF-IDF with embeddings (e.g. Gemini or SentenceTransformers)
-- Enable voice-based querying via Whisper or Gemini Audio
+- Add multilingual support  
+- Replace TF-IDF with embeddings (e.g. Gemini or SentenceTransformers)  
+- Enable voice-based querying via Whisper or Gemini Audio  
 
 Got ideas? Feedback? Want to collab? Drop me a message!
-
