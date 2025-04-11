@@ -28,10 +28,10 @@ Manually searching for answers in the PDF takes time and invites errors. That’
 
 This project creates an intelligent assistant that interprets catalog PDFs and answers natural language queries using:
 
-- 🧾 PDF parsing and OCR (for image-based text)
+- 🧾 PDF parsing
 - 🔍 TF-IDF-based vector search
 - ✨ Context-rich Gemini Pro prompts
-- 🖼️ Structured answers with pricing, specs, and image references
+- 🖼️ Structured answers with pricing, specs, and references
 
 It transforms a static document into an interactive, grounded chatbot.
 
@@ -44,23 +44,16 @@ Below is a detailed breakdown of the system with code snippets and explanations 
 ### 1. PDF & OCR Ingestion
 
 ```python
-from PyPDF2 import PdfReader
-import pytesseract
-from pdf2image import convert_from_path
+from PyPDF2 
 
 # Extract text from a standard (non-image) page of the PDF.
-reader = PdfReader("PB_CWB.pdf")
+reader = PyPDF2.PdfReader("PB_CWB.pdf")
 text = reader.pages[10].extract_text()
 
-# If the page is image-based or text extraction is insufficient,
-# convert the specific page to an image and apply OCR to extract the text.
-images = convert_from_path("PB_CWB.pdf", first_page=11, last_page=11)
-ocr_text = pytesseract.image_to_string(images[0])
 ```
 
 *Explanation:*  
 - **PDF Text Extraction:** The code uses `PyPDF2` to extract text from page 10 of the PDF.  
-- **OCR Fallback:** In cases where text extraction is unreliable (for image-based pages), `pdf2image` and `pytesseract` are used to convert page 11 to an image and perform OCR on it.
 
 ---
 
@@ -69,13 +62,9 @@ ocr_text = pytesseract.image_to_string(images[0])
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import re
-
-# Split the extracted text into chunks using a regex that identifies product part numbers (e.g., FT123).
-chunks = re.split(r"\n(?=FT\d{3})", text)
 
 # Build a TF-IDF matrix from the text chunks.
-vectorizer = TfidfVectorizer().fit_transform(chunks)
+vectorizer = TfidfVectorizer().fit_transform(text)
 
 # Prepare a sample query.
 query = "FT123 metallic paint price"
@@ -143,7 +132,6 @@ print(response.text)
 
 | Feature               | Innovation |
 |-----------------------|------------|
-| 📄 OCR + RAG          | Links extracted image text (e.g., FT123) with price/spec data |
 | 🧠 Multimodal Reasoning | Handles image + text prompts in a single QA flow |
 | 🧾 Structured Answers  | Gemini returns tabular pricing or comparisons, not just plain text |
 | ⚙️ Product Logic       | Understands dependencies like finishes, brackets, assemblies |
@@ -156,7 +144,7 @@ print(response.text)
 |--------------------------|-----------------|
 | Spec-heavy product docs  | Explains in human language |
 | Ambiguous config options | Handles context-aware prompts |
-| Dense, mixed-format PDFs | Works with OCR, tables, and prose |
+| Dense, mixed-format PDFs | Works with text & tables |
 | Flexible natural language | Supports varied questions like “show me finishes” or “compare X and Y” |
 
 ---
