@@ -1,0 +1,46 @@
+---
+layout: default
+title: Lee Whieldon – Projects & Blog
+---
+
+<h1>👋 Hi, I'm Lee Whieldon</h1>
+
+<p>
+  I'm a data engineer and GenAI enthusiast working at the intersection of AI, structured data, and user-centric applications. 
+  I build things like document-aware chatbots, product search tools, and intelligent agents that actually understand the problem space.
+</p>
+
+<p>
+  🔗 <a href="https://github.com/Lwhieldon" target="_blank">GitHub</a> • 
+  💼 <a href="https://www.linkedin.com/in/lee-w-9b3a0620/" target="_blank">LinkedIn</a>
+</p>
+
+<hr>
+
+<h2>📝 Latest Blog Posts</h2>
+<ul>
+  {% for post in site.posts limit:5 %}
+    <li>
+      <strong><a href="{{ post.url }}">{{ post.title }}</a></strong><br>
+      <small>{{ post.date | date: "%B %d, %Y" }}</small>
+    </li>
+  {% endfor %}
+</ul>
+
+<p><a href="/blog">View all posts →</a></p>
+
+<hr>
+
+<h2>💼 Featured Projects</h2>
+<ul>
+  <li><a href="/projects">Herman Miller Product Chatbot</a> – LLM-powered assistant for structured product queries and pricing</li>
+  <li><a href="https://www.kaggle.com/code/lwhieldon/genai-herman-miller-chatbot">Kaggle GenAI Capstone</a> – Generative AI agent use case with table + image extraction</li>
+</ul>
+
+<hr>
+
+<footer>
+  <p>
+    📫 Reach out on <a href="https://www.linkedin.com/in/lee-w-9b3a0620/" target="_blank">LinkedIn</a> or check out my work on <a href="https://github.com/Lwhieldon" target="_blank">GitHub</a>.
+  </p>
+</footer>
