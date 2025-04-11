@@ -41,7 +41,7 @@ It transforms a static document into an interactive, grounded chatbot.
 
 Below is a detailed breakdown of the system with code snippets and explanations for each step:
 
-### 1. PDF Ingestion
+### 1. PDF Ingestion & Text Extraction
 
 ```python
 from PyPDF2 
