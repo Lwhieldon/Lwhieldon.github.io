@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "🕵️ Compliance Academy: A Multi-Agent Cyber Mystery on Microsoft Foundry"
-date: 2026-06-10
+date: 2026-06-08
 author: Lee Whieldon
 description: How I built a four-agent compliance training RPG for Microsoft Reactor's Reasoning Agents Live Streaming Battle, grounded in real policy retrieval through Azure AI Search.
 ---
@@ -13,6 +13,8 @@ When Microsoft Reactor invited me to compete in the [Reasoning Agents Live Strea
 The result is **Compliance Academy**, a four-agent RPG built on **Microsoft Foundry Agent Service**. You play the lead investigator at *Helix Dynamics*, a fictional biotech that just lost 14 GB of clinical trial data. Five suspects. One perpetrator. Multiple frameworks (SOC 2, HIPAA, ISO 27001) and Helix's own policies are in play. The agents are doing real work the whole time: retrieving from a compliance knowledge index, streaming responses, swapping personas, and at the end the **Compliance Officer** delivers the framework lesson the player just lived through.
 
 The full source is here: 👉 [**github.com/lwhieldon/msft-enterprise-learning-agent**](https://github.com/lwhieldon/msft-enterprise-learning-agent)
+
+The live battle is on **June 10, 2026 at 12:00 PM ET** on the [Microsoft Reactor stream](https://developer.microsoft.com/en-us/reactor/). I will be there. 🎤
 
 ---
 
@@ -196,4 +198,4 @@ Special thanks to [Lee Stott](https://www.linkedin.com/in/leestott/) and [Carlot
 
 ---
 
-*This site is open source. [Improve this page](https://github.com/Lwhieldon/Lwhieldon.github.io/edit/main/_posts/2026-06-10-compliance-academy.md).*
+*This site is open source. [Improve this page](https://github.com/Lwhieldon/Lwhieldon.github.io/edit/main/_posts/2026-06-08-compliance-academy.md).*
