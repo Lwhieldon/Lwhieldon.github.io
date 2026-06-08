@@ -96,6 +96,7 @@ When the Forensic Analyst then says *"per HD-SEC-AC-001 §4.1, MFA exceptions mu
 
 Each suspect is its own agent with a templated system prompt that gets filled from scenario data:
 
+{% raw %}
 ```python
 SUSPECT_TEMPLATE_VARS = [
     "{{name}}", "{{role}}", "{{premise}}", "{{backstory}}",
@@ -105,6 +106,7 @@ SUSPECT_TEMPLATE_VARS = [
     "{{leak_conditions}}", "{{starting_trust}}",
 ]
 ```
+{% endraw %}
 
 The interesting design choice was **leak_conditions**. Each suspect has a list of triggers like *"when asked directly about the Sofia office"* or *"when pressed twice on the same alibi detail."* When the model sees those triggers in conversation, it's authorized to start leaking guarded knowledge — but only what's in the `guarded_knowledge` block, never the `hidden_truth` block (unless the suspect is the perpetrator and the player has accumulated enough trust).
 
