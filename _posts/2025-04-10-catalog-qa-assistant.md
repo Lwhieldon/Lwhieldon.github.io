@@ -160,7 +160,7 @@ Check out the competition on Kaggle:
 👉 [Q1 2025 GenAI Intensive Capstone Competition](https://www.kaggle.com/competitions/gen-ai-intensive-course-capstone-2025q1)
 
 Or fork my notebook and plug in your own PDF specs, datasheets, or pricing docs:  
-👉 [My GenAI Intensive Capstone 2025Q1 Submission](https://www.kaggle.com/code/leewhieldon/genai-intensive)
+👉 [My GenAI Intensive Capstone 2025Q1 Submission](https://www.kaggle.com/code/leewhieldon/gemini-qa-product-catalog-assistant)
 
 ---
 
